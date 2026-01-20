@@ -213,11 +213,11 @@ const Sidebar = ({ currentPage, onNavigate, language, onLanguageChange, userRole
   const { t } = useTranslation(language);
   const items = [
     { id: 'overview', icon: <LayoutDashboard className="w-5 h-5" />, label: t('overview'), roles: ['admin', 'applicant'] },
-    { id: 'students', icon: <Users className="w-5 h-5" />, label: t('students'), roles: ['admin'] },
-    { id: 'donors', icon: <DollarSign className="w-5 h-5" />, label: t('donors'), roles: ['admin'] },
-    { id: 'campaigns', icon: <Target className="w-5 h-5" />, label: t('campaigns'), roles: ['admin'] },
-    { id: 'email-ai', icon: <Mail className="w-5 h-5" />, label: t('emailAI'), roles: ['admin'] },
-    { id: 'analytics', icon: <TrendingUp className="w-5 h-5" />, label: t('analytics'), roles: ['admin'] },
+    { id: 'students', icon: <Users className="w-5 h-5" />, label: t('students'), roles: ['admin', 'applicant'] },
+    { id: 'donors', icon: <DollarSign className="w-5 h-5" />, label: t('donors'), roles: ['admin', 'applicant'] },
+    { id: 'campaigns', icon: <Target className="w-5 h-5" />, label: t('campaigns'), roles: ['admin', 'applicant'] },
+    { id: 'email-ai', icon: <Mail className="w-5 h-5" />, label: t('emailAI'), roles: ['admin', 'applicant'] },
+    { id: 'analytics', icon: <TrendingUp className="w-5 h-5" />, label: t('analytics'), roles: ['admin', 'applicant'] },
   ].filter(item => item.roles.includes(userRole));
 
   return (
@@ -329,7 +329,7 @@ const OverviewPage = ({ onNavigate, language }) => {
               <span>{t('export')}</span>
             </button>
           </div>
-          <div className="h-80">
+          <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={chartData}>
                 <defs>
@@ -435,12 +435,30 @@ const StatsCard = ({ icon, title, value, change, color }) => (
 
 const StudentsPage = ({ language }) => {
   const { t } = useTranslation(language);
+  const [students, setStudents] = useState(mockStudents);
   const [searchTerm, setSearchTerm] = useState('');
-  const filteredStudents = mockStudents.filter(s =>
+  const [showModal, setShowModal] = useState(false);
+  const [newStudent, setNewStudent] = useState({
+    name: '', email: '', major: '', gpa: '', status: 'Applied'
+  });
+
+  const filteredStudents = students.filter(s =>
     s.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     s.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
     s.major.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleAddStudent = () => {
+    if (newStudent.name && newStudent.email) {
+      setStudents([...students, {
+        id: students.length + 1,
+        ...newStudent,
+        lastUpdate: new Date().toISOString().split('T')[0]
+      }]);
+      setShowModal(false);
+      setNewStudent({ name: '', email: '', major: '', gpa: '', status: 'Applied' });
+    }
+  };
 
   const handleExport = () => {
     const csvContent = "Name,Email,Major,GPA,Status,Last Update\n" +
@@ -467,7 +485,10 @@ const StudentsPage = ({ language }) => {
             <Download className="w-5 h-5" />
             <span>{t('export')}</span>
           </button>
-          <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+          <button
+            onClick={() => setShowModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+          >
             <Plus className="w-5 h-5" />
             <span>{t('addNewStudent')}</span>
           </button>
@@ -525,7 +546,74 @@ const StudentsPage = ({ language }) => {
           </table>
         </div>
       </div>
-    </div>
+
+
+      {
+        showModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowModal(false)}>
+            <div className="bg-white rounded-xl p-8 max-w-md w-full" onClick={e => e.stopPropagation()}>
+              <h2 className="text-2xl font-bold mb-6">{t('addNewStudent')}</h2>
+              <div className="space-y-4">
+                <input
+                  type="text"
+                  placeholder={t('name')}
+                  value={newStudent.name}
+                  onChange={e => setNewStudent({ ...newStudent, name: e.target.value })}
+                  className="w-full px-4 py-2 border rounded-lg"
+                />
+                <input
+                  type="email"
+                  placeholder={t('email')}
+                  value={newStudent.email}
+                  onChange={e => setNewStudent({ ...newStudent, email: e.target.value })}
+                  className="w-full px-4 py-2 border rounded-lg"
+                />
+                <input
+                  type="text"
+                  placeholder={t('major')}
+                  value={newStudent.major}
+                  onChange={e => setNewStudent({ ...newStudent, major: e.target.value })}
+                  className="w-full px-4 py-2 border rounded-lg"
+                />
+                <div className="flex space-x-4">
+                  <input
+                    type="text"
+                    placeholder={t('gpa')}
+                    value={newStudent.gpa}
+                    onChange={e => setNewStudent({ ...newStudent, gpa: e.target.value })}
+                    className="w-full px-4 py-2 border rounded-lg"
+                  />
+                  <select
+                    value={newStudent.status}
+                    onChange={e => setNewStudent({ ...newStudent, status: e.target.value })}
+                    className="w-full px-4 py-2 border rounded-lg"
+                  >
+                    <option value="Applied">Applied</option>
+                    <option value="Review">Review</option>
+                    <option value="Accepted">Accepted</option>
+                    <option value="Enrolled">Enrolled</option>
+                  </select>
+                </div>
+              </div>
+              <div className="mt-6 flex space-x-3">
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="flex-1 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+                >
+                  {t('cancel')}
+                </button>
+                <button
+                  onClick={handleAddStudent}
+                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                >
+                  {t('addStudent')}
+                </button>
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </div >
   );
 };
 
@@ -601,9 +689,9 @@ const DonorsPage = ({ language }) => {
               </div>
             </div>
             <div className="flex space-x-3">
-              <button className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Send Email</button>
-              <button className="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">Request Gift</button>
-              <button className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Schedule Call</button>
+              <button onClick={() => alert('Email sent successfully!')} className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Send Email</button>
+              <button onClick={() => alert('Gift request sent!')} className="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">Request Gift</button>
+              <button onClick={() => alert('Call scheduled!')} className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Schedule Call</button>
             </div>
           </div>
         </div>
@@ -941,17 +1029,28 @@ const LoginPage = ({ onLogin, language, onLanguageChange }) => {
   const { t } = useTranslation(language);
   const [email, setEmail] = useState(() => localStorage.getItem('rememberedEmail') || '');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('admin');
+  const [role, setRole] = useState('admin'); // Role selection UI can remain, or we can infer from email
   const [rememberMe, setRememberMe] = useState(() => !!localStorage.getItem('rememberedEmail'));
+  const [error, setError] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError('');
+
     if (rememberMe) {
       localStorage.setItem('rememberedEmail', email);
     } else {
       localStorage.removeItem('rememberedEmail');
     }
-    onLogin({ email, password, role });
+
+    // Credential Validation
+    if (email.toLowerCase() === 'admin@admitiq.ca') {
+      onLogin({ email, password, role: 'admin' });
+    } else if (email.toLowerCase() === 'applicant@admitiq.ca') {
+      onLogin({ email, password, role: 'applicant' });
+    } else {
+      setError(t('invalidCredentials') || 'Invalid credentials. Please use the demo accounts.');
+    }
   };
 
   return (
@@ -966,6 +1065,13 @@ const LoginPage = ({ onLogin, language, onLanguageChange }) => {
           <span className="text-3xl font-bold text-gray-900">AdmitIQ</span>
         </div>
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">{t('welcomeBack')}</h2>
+
+        {error && (
+          <div className="mb-4 p-3 bg-red-50 text-red-600 text-sm rounded-lg border border-red-100 text-center font-medium">
+            {error}
+          </div>
+        )}
+
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">{t('email')}</label>
@@ -975,13 +1081,11 @@ const LoginPage = ({ onLogin, language, onLanguageChange }) => {
             <label className="block text-sm font-semibold text-gray-700 mb-1">{t('password')}</label>
             <input type="password" value={password} onChange={e => setPassword(e.target.value)} className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500" required />
           </div>
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">{t('role')}</label>
-            <select value={role} onChange={e => setRole(e.target.value)} className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500">
-              <option value="admin">{t('admin')}</option>
-              <option value="applicant">{t('applicant')}</option>
-            </select>
-          </div>
+          {/* Role selection is now inferred from email, but keeping it visible if needed or we can hide it. 
+              The prompt implies email determines role. I will hide it or make it purely visual/disabled if inferred.
+              For now, I'll remove the manual role selector to avoid confusion, as email dictates role.
+          */}
+
           <div className="flex items-center">
             <input
               type="checkbox"
@@ -998,11 +1102,14 @@ const LoginPage = ({ onLogin, language, onLanguageChange }) => {
             {t('signIn')}
           </button>
         </form>
-        <p className="text-center text-gray-500 text-sm mt-6">
-          {t('demoMessage')}
-          <br />
-          <span className="text-xs text-blue-500 font-mono mt-1 block">admin@admitiq.edu / any password</span>
-        </p>
+        <div className="text-center text-gray-500 text-sm mt-6">
+          <p className="mb-2">{t('demoMessage')}</p>
+          <div className="text-xs text-blue-600 font-mono bg-blue-50 p-2 rounded">
+            <div>Admin: admin@admitiq.ca</div>
+            <div>Applicant: applicant@admitiq.ca</div>
+            <div className="mt-1 text-gray-400">(Any password)</div>
+          </div>
+        </div>
       </div>
     </div>
   );

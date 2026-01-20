@@ -19,6 +19,7 @@ export const translations = {
         admin: 'Admin',
         applicant: 'Applicant',
         demoMessage: 'Demo: Click Sign In to access dashboard',
+        invalidCredentials: 'Invalid credentials. Please refer to the demo accounts below.',
 
         // Dashboard
         dashboardOverview: 'Dashboard Overview',
@@ -141,6 +142,7 @@ export const translations = {
         admin: 'Administrateur',
         applicant: 'Candidat',
         demoMessage: 'Démo: Cliquez sur Se connecter pour accéder au tableau de bord',
+        invalidCredentials: 'Identifiants invalides. Veuillez vous référer aux comptes de démonstration ci-dessous.',
 
         // Dashboard
         dashboardOverview: 'Aperçu du tableau de bord',
