@@ -1,0 +1,255 @@
+// Language translations
+export const translations = {
+    en: {
+        // Navigation
+        overview: 'Overview',
+        students: 'Students',
+        donors: 'Donors',
+        campaigns: 'Campaigns',
+        aiEmail: 'AI Email',
+        analytics: 'Analytics',
+        logout: 'Logout',
+        login: 'Login',
+
+        // Auth
+        welcomeBack: 'Welcome Back',
+        signIn: 'Sign In',
+        rememberMe: 'Remember Me',
+        role: 'Role',
+        admin: 'Admin',
+        applicant: 'Applicant',
+        demoMessage: 'Demo: Click Sign In to access dashboard',
+
+        // Dashboard
+        dashboardOverview: 'Dashboard Overview',
+        totalStudents: 'Total Students',
+        activeDonors: 'Active Donors',
+        enrollmentRate: 'Enrollment Rate',
+        totalRaised: 'Total Raised',
+        engagementTrends: 'Engagement Trends',
+        enrollmentStatus: 'Enrollment Status',
+        quickActions: 'Quick Actions',
+        sendCampaign: 'Send Campaign',
+        addStudent: 'Add Student',
+        generateReport: 'Generate Report',
+        settings: 'Settings',
+
+        // Students
+        studentsTitle: 'Students',
+        export: 'Export',
+        searchPlaceholder: 'Search by name, email, or major...',
+        name: 'Name',
+        email: 'Email',
+        major: 'Major',
+        year: 'Year',
+        gpa: 'GPA',
+        status: 'Status',
+        actions: 'Actions',
+        addNewStudent: 'Add New Student',
+        fullName: 'Full Name',
+        phone: 'Phone',
+        selectYear: 'Select Year',
+        freshman: 'Freshman',
+        sophomore: 'Sophomore',
+        junior: 'Junior',
+        senior: 'Senior',
+        cancel: 'Cancel',
+        active: 'Active',
+
+        // Campaigns
+        campaignsTitle: 'Campaigns',
+        newCampaign: 'New Campaign',
+        createNewCampaign: 'Create New Campaign',
+        campaignName: 'Campaign Name',
+        goalAmount: 'Goal Amount ($)',
+        startDate: 'Start Date',
+        endDate: 'End Date',
+        createCampaign: 'Create Campaign',
+        goal: 'Goal',
+        raised: 'Raised',
+        donorsCount: 'Donors',
+        progress: 'Progress',
+        emailDonors: 'Email Donors',
+        report: 'Report',
+        campaignExported: 'Campaign data exported!',
+
+        // Analytics
+        analyticsTitle: 'Analytics & Reports',
+        revenueGrowth: 'Revenue Growth',
+        donorRetention: 'Donor Retention',
+        studentSatisfaction: 'Student Satisfaction',
+        monthlyRevenueTrend: 'Monthly Revenue Trend',
+        downloadFullReport: 'Download Full Report',
+        exportData: 'Export Data',
+        reportDescription: 'Get comprehensive analytics report (PDF)',
+        dataDescription: 'Download raw data (CSV, Excel)',
+        vsLastQuarter: 'vs last quarter',
+        retentionPeriod: '12-month retention',
+        avgRating: 'Average rating',
+
+        // AI Email
+        aiEmailGenerator: 'AI Email Generator',
+        input: 'Input',
+        emailType: 'Email Type',
+        donor: 'Donor',
+        student: 'Student',
+        alumni: 'Alumni',
+        generateEmail: 'Generate Email',
+        generatedEmail: 'Generated Email',
+        generatedPlaceholder: 'Your AI-generated email will appear here...',
+        copy: 'Copy to Clipboard',
+        copied: 'Copied!',
+        sendEmail: 'Send Email',
+        sending: 'Sending...',
+        emailSent: 'Email Sent Successfully!',
+        pleaseGenerateFirst: 'Please generate an email first!',
+        emailPromptPlaceholder: 'Describe your email purpose (e.g., \'Thank them for recent donation and invite to upcoming gala event\')...',
+
+        // Time ranges
+        '1d': '1d',
+        '1w': '1w',
+        '1m': '1m',
+        '3m': '3m',
+        '6m': '6m',
+        '1y': '1y',
+
+        // Chatbot
+        chatbotTitle: 'AdmitIQ Assistant',
+        poweredByAI: 'Powered by AI',
+        studentMode: 'Student Mode',
+        adminMode: 'Admin Mode',
+        askAnything: 'Ask me anything...',
+        quickQuestions: 'Quick questions:',
+        poweredByAIFooter: 'Powered by AI with 100+ university Q&As • Drag to move • Resize from corners'
+    },
+    fr: {
+        // Navigation
+        overview: 'Aperçu',
+        students: 'Étudiants',
+        donors: 'Donateurs',
+        campaigns: 'Campagnes',
+        aiEmail: 'Email IA',
+        analytics: 'Analytique',
+        logout: 'Déconnexion',
+        login: 'Connexion',
+
+        // Auth
+        welcomeBack: 'Bon retour',
+        signIn: 'Se connecter',
+        rememberMe: 'Se souvenir de moi',
+        role: 'Rôle',
+        admin: 'Administrateur',
+        applicant: 'Candidat',
+        demoMessage: 'Démo: Cliquez sur Se connecter pour accéder au tableau de bord',
+
+        // Dashboard
+        dashboardOverview: 'Aperçu du tableau de bord',
+        totalStudents: 'Total des étudiants',
+        activeDonors: 'Donateurs actifs',
+        enrollmentRate: "Taux d'inscription",
+        totalRaised: 'Total collecté',
+        engagementTrends: "Tendances d'engagement",
+        enrollmentStatus: "Statut d'inscription",
+        quickActions: 'Actions rapides',
+        sendCampaign: 'Envoyer une campagne',
+        addStudent: 'Ajouter un étudiant',
+        generateReport: 'Générer un rapport',
+        settings: 'Paramètres',
+
+        // Students
+        studentsTitle: 'Étudiants',
+        export: 'Exporter',
+        searchPlaceholder: 'Rechercher par nom, email ou spécialité...',
+        name: 'Nom',
+        email: 'Email',
+        major: 'Spécialité',
+        year: 'Année',
+        gpa: 'MPC',
+        status: 'Statut',
+        actions: 'Actions',
+        addNewStudent: 'Ajouter un nouvel étudiant',
+        fullName: 'Nom complet',
+        phone: 'Téléphone',
+        selectYear: "Sélectionner l'année",
+        freshman: 'Première année',
+        sophomore: 'Deuxième année',
+        junior: 'Troisième année',
+        senior: 'Quatrième année',
+        cancel: 'Annuler',
+        active: 'Actif',
+
+        // Campaigns
+        campaignsTitle: 'Campagnes',
+        newCampaign: 'Nouvelle campagne',
+        createNewCampaign: 'Créer une nouvelle campagne',
+        campaignName: 'Nom de la campagne',
+        goalAmount: 'Montant objectif ($)',
+        startDate: 'Date de début',
+        endDate: 'Date de fin',
+        createCampaign: 'Créer une campagne',
+        goal: 'Objectif',
+        raised: 'Collecté',
+        donorsCount: 'Donateurs',
+        progress: 'Progrès',
+        emailDonors: 'Envoyer un email aux donateurs',
+        report: 'Rapport',
+        campaignExported: 'Données de la campagne exportées !',
+
+        // Analytics
+        analyticsTitle: 'Analytique et rapports',
+        revenueGrowth: 'Croissance des revenus',
+        donorRetention: 'Rétention des donateurs',
+        studentSatisfaction: 'Satisfaction des étudiants',
+        monthlyRevenueTrend: 'Tendance mensuelle des revenus',
+        downloadFullReport: 'Télécharger le rapport complet',
+        exportData: 'Exporter les données',
+        reportDescription: 'Obtenir un rapport analytique complet (PDF)',
+        dataDescription: 'Télécharger les données brutes (CSV, Excel)',
+        vsLastQuarter: 'par rapport au dernier trimestre',
+        retentionPeriod: 'rétention sur 12 mois',
+        avgRating: 'Note moyenne',
+
+        // AI Email
+        aiEmailGenerator: 'Générateur d\'emails IA',
+        input: 'Entrée',
+        emailType: 'Type d\'email',
+        donor: 'Donateur',
+        student: 'Étudiant',
+        alumni: 'Ancien',
+        generateEmail: 'Générer l\'email',
+        generatedEmail: 'Email généré',
+        generatedPlaceholder: 'Votre email généré par l\'IA apparaîtra ici...',
+        copy: 'Copier dans le presse-papiers',
+        copied: 'Copié !',
+        sendEmail: 'Envoyer l\'email',
+        sending: 'Envoi en cours...',
+        emailSent: 'Email envoyé avec succès !',
+        pleaseGenerateFirst: 'Veuillez d\'abord générer un email !',
+        emailPromptPlaceholder: 'Décrivez le but de votre email (ex: \'Remerciez-les pour leur don récent et invitez-les au prochain gala\')...',
+
+        // Time ranges
+        '1d': '1j',
+        '1w': '1s',
+        '1m': '1m',
+        '3m': '3m',
+        '6m': '6m',
+        '1y': '1a',
+
+        // Chatbot
+        chatbotTitle: 'Assistant AdmitIQ',
+        poweredByAI: 'Propulsé par IA',
+        studentMode: 'Mode étudiant',
+        adminMode: 'Mode administrateur',
+        askAnything: 'Posez-moi une question...',
+        quickQuestions: 'Questions rapides:',
+        poweredByAIFooter: "Propulsé par IA avec plus de 100 Q&R universitaires • Faites glisser pour déplacer • Redimensionnez depuis les coins"
+    }
+};
+
+export const useTranslation = (language = 'en') => {
+    const t = (key) => {
+        return translations[language]?.[key] || translations.en[key] || key;
+    };
+
+    return { t };
+};
