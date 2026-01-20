@@ -216,6 +216,37 @@ export const translations = {
         quickQuestions: 'Quick questions:',
         poweredByAIFooter: 'Powered by AI with 100+ university Q&As • Drag to move • Resize from corners',
 
+        // Chatbot Messages
+        chatWelcome: "Hello! I'm your AdmitIQ assistant. I can help you with questions about admissions, financial aid, academics, campus life, and more. What would you like to know?",
+        chatGreeting: "Hello! 👋 I'm your AdmitIQ assistant. I'm here to help you with any questions about our university. I can assist with:\n\n• Admissions & Applications\n• Financial Aid & Scholarships\n• Academic Programs\n• Campus Life & Housing\n• Career Services\n• Technical Support\n\nWhat would you like to know?",
+        chatMetaResponse: "Your previous question was: \"{question}\"\n\nWould you like me to answer that question, or do you have a different question?",
+        chatMetaFirst: "This is the first question you've asked in our conversation. How can I help you today?",
+        chatAnythingElse: "Is there anything else you'd like to know about this topic?",
+        chatFallbackWithTopic: "I understand you're interested in {topic}. While I don't have a specific answer to \"{question}\" in my current database, I'd be happy to help!\n\nCould you be more specific? For example:\n• What specific aspect interests you?\n• Are you looking for requirements, costs, or availability?\n\nAlternatively, you can contact our support team at support@admitiq.edu for personalized assistance.",
+        chatFallbackGeneral: "Thank you for your question: \"{question}\"\n\nI want to make sure I give you the most accurate information. Could you help me understand better by choosing one of these topics?\n\n• Admissions & Applications\n• Financial Aid & Scholarships\n• Academic Programs & Courses\n• Campus Life & Housing\n• Career Services & Internships\n• Technical Support\n\nOr feel free to rephrase your question, and I'll do my best to help! You can also reach our support team at support@admitiq.edu.",
+
+        // Quick Replies
+        quickReply1: 'What are admission requirements?',
+        quickReply2: 'How do I apply for scholarships?',
+        quickReply3: 'What majors are available?',
+        quickReply4: 'Tell me about campus housing',
+
+        // Topics for fallback
+        topicFinancialAid: 'financial aid and tuition costs',
+        topicMoney: 'financial aid and scholarships',
+        topicClass: 'academic programs and course registration',
+        topicLive: 'campus housing and residential life',
+        topicDorm: 'campus housing options',
+        topicFood: 'dining services and meal plans',
+        topicJob: 'career services and internships',
+        topicWork: 'work-study programs and career opportunities',
+        topicClub: 'student organizations and activities',
+        topicSport: 'athletics and recreational sports',
+        topicHealth: 'health services and counseling',
+        topicWifi: 'technology resources and IT support',
+        topicLibrary: 'library services and study spaces',
+        topicParking: 'parking and transportation options',
+
         // Header Dropdowns
         // Solutions
         solStudentExp: 'Student Experience',
@@ -469,6 +500,37 @@ export const translations = {
         askAnything: 'Posez-moi une question...',
         quickQuestions: 'Questions rapides:',
         poweredByAIFooter: "Propulsé par IA avec plus de 100 Q&R universitaires • Faites glisser pour déplacer • Redimensionnez depuis les coins",
+
+        // Chatbot Messages
+        chatWelcome: "Bonjour! Je suis votre assistant AdmitIQ. Je peux vous aider avec des questions sur les admissions, l'aide financière, les programmes académiques, la vie sur le campus et plus encore. Que souhaitez-vous savoir?",
+        chatGreeting: "Bonjour! 👋 Je suis votre assistant AdmitIQ. Je suis là pour vous aider avec toutes vos questions sur notre université. Je peux vous aider avec:\n\n• Admissions et candidatures\n• Aide financière et bourses\n• Programmes académiques\n• Vie sur le campus et logement\n• Services de carrière\n• Support technique\n\nQue souhaitez-vous savoir?",
+        chatMetaResponse: "Votre question précédente était: \"{question}\"\n\nSouhaitez-vous que je réponde à cette question, ou avez-vous une autre question?",
+        chatMetaFirst: "C'est la première question que vous posez dans notre conversation. Comment puis-je vous aider aujourd'hui?",
+        chatAnythingElse: "Y a-t-il autre chose que vous aimeriez savoir sur ce sujet?",
+        chatFallbackWithTopic: "Je comprends que vous êtes intéressé par {topic}. Bien que je n'aie pas de réponse spécifique à \"{question}\" dans ma base de données actuelle, je serais ravi de vous aider!\n\nPourriez-vous être plus précis? Par exemple:\n• Quel aspect spécifique vous intéresse?\n• Recherchez-vous des exigences, des coûts ou la disponibilité?\n\nAlternativement, vous pouvez contacter notre équipe de support à support@admitiq.edu pour une assistance personnalisée.",
+        chatFallbackGeneral: "Merci pour votre question: \"{question}\"\n\nJe veux m'assurer de vous donner les informations les plus précises. Pourriez-vous m'aider à mieux comprendre en choisissant l'un de ces sujets?\n\n• Admissions et candidatures\n• Aide financière et bourses\n• Programmes et cours académiques\n• Vie sur le campus et logement\n• Services de carrière et stages\n• Support technique\n\nOu n'hésitez pas à reformuler votre question, et je ferai de mon mieux pour vous aider! Vous pouvez également contacter notre équipe de support à support@admitiq.edu.",
+
+        // Quick Replies
+        quickReply1: "Quelles sont les exigences d'admission?",
+        quickReply2: 'Comment puis-je demander des bourses?',
+        quickReply3: 'Quelles spécialités sont disponibles?',
+        quickReply4: 'Parlez-moi du logement sur le campus',
+
+        // Topics for fallback
+        topicFinancialAid: "l'aide financière et les frais de scolarité",
+        topicMoney: "l'aide financière et les bourses",
+        topicClass: "les programmes académiques et l'inscription aux cours",
+        topicLive: 'le logement sur le campus et la vie résidentielle',
+        topicDorm: 'les options de logement sur le campus',
+        topicFood: 'les services de restauration et les plans de repas',
+        topicJob: 'les services de carrière et les stages',
+        topicWork: 'les programmes travail-études et les opportunités de carrière',
+        topicClub: 'les organisations étudiantes et les activités',
+        topicSport: 'les sports athlétiques et récréatifs',
+        topicHealth: 'les services de santé et de conseil',
+        topicWifi: 'les ressources technologiques et le support informatique',
+        topicLibrary: 'les services de bibliothèque et les espaces d\'étude',
+        topicParking: 'les options de stationnement et de transport',
 
         // Header Dropdowns
         // Solutions

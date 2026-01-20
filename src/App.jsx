@@ -20,13 +20,13 @@ const Dropdown = ({ title, items, simple = false }) => {
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
-      <button className="flex items-center space-x-1 hover:text-blue-600 px-2 py-4 h-full">
+      <button className="flex items-center space-x-1 hover:text-blue-600 px-2 py-4 h-full transition-colors duration-200">
         <span>{title}</span>
-        <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-0 w-64 bg-white shadow-xl rounded-b-lg border-t-2 border-blue-600 py-4 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute top-full left-0 mt-0 w-64 bg-white shadow-xl rounded-b-lg border-t-2 border-blue-600 py-4 z-50 animate-slide-down">
           <div className="px-4 space-y-4">
             {items.map((section, idx) => (
               <div key={idx} className="pb-2 border-b last:border-0 border-gray-100">
@@ -34,7 +34,7 @@ const Dropdown = ({ title, items, simple = false }) => {
                 {simple ? (
                   <div className="space-y-1">
                     {section.links.map((link, lIdx) => (
-                      <a key={lIdx} href="#" className="block text-sm text-gray-600 hover:text-blue-600">{link}</a>
+                      <a key={lIdx} href="#" className="block text-sm text-gray-600 hover:text-blue-600 transition-colors duration-150">{link}</a>
                     ))}
                     {section.links.length === 0 && <span className="block text-sm text-gray-400">View</span>}
                   </div>
@@ -42,7 +42,7 @@ const Dropdown = ({ title, items, simple = false }) => {
                   <ul className="space-y-1">
                     {section.links.map((link, lIdx) => (
                       <li key={lIdx}>
-                        <a href="#" className="text-sm text-gray-600 hover:text-blue-600 block">{link}</a>
+                        <a href="#" className="text-sm text-gray-600 hover:text-blue-600 block transition-colors duration-150">{link}</a>
                       </li>
                     ))}
                   </ul>
@@ -55,6 +55,7 @@ const Dropdown = ({ title, items, simple = false }) => {
     </div>
   );
 };
+
 import { translations, useTranslation } from './translations';
 import AIChatbot from './AIChatbot';
 
@@ -1394,7 +1395,7 @@ export default function App() {
             {currentPage === 'analytics' && <AnalyticsPage language={language} />}
           </main>
         </div>
-        <AIChatbot userRole={userRole} />
+        <AIChatbot userRole={userRole} language={language} />
       </div>
     );
   }
@@ -1406,7 +1407,7 @@ export default function App() {
       <Solutions language={language} />
       <About language={language} />
       <Footer language={language} />
-      <AIChatbot userRole="student" />
+      <AIChatbot userRole="student" language={language} />
     </div>
   );
 }

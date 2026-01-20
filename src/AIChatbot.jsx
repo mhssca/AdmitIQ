@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, User, Bot, Minimize2, Maximize2 } from 'lucide-react';
 import { findBestMatch } from './qaDatabase';
+import { useTranslation } from './translations';
 
-const AIChatbot = ({ userRole = 'student' }) => {
+const AIChatbot = ({ userRole = 'student', language = 'en' }) => {
+    const { t } = useTranslation(language);
     const [isOpen, setIsOpen] = useState(false);
     const [isMinimized, setIsMinimized] = useState(false);
     const [position, setPosition] = useState({ x: window.innerWidth - 420, y: window.innerHeight - 650 });
@@ -12,7 +14,7 @@ const AIChatbot = ({ userRole = 'student' }) => {
     const [messages, setMessages] = useState([
         {
             type: 'bot',
-            text: `Hello! I'm your AdmitIQ assistant. I can help you with questions about admissions, financial aid, academics, campus life, and more. What would you like to know?`,
+            text: t('chatWelcome'),
             timestamp: new Date()
         }
     ]);
@@ -66,10 +68,10 @@ const AIChatbot = ({ userRole = 'student' }) => {
     }, [isDragging, dragStart]);
 
     const quickReplies = [
-        "What are admission requirements?",
-        "How do I apply for scholarships?",
-        "What majors are available?",
-        "Tell me about campus housing"
+        t('quickReply1'),
+        t('quickReply2'),
+        t('quickReply3'),
+        t('quickReply4')
     ];
 
     const handleSendMessage = async () => {
@@ -103,7 +105,7 @@ const AIChatbot = ({ userRole = 'student' }) => {
             if (isGreeting) {
                 botResponse = {
                     type: 'bot',
-                    text: `Hello! 👋 I'm your AdmitIQ assistant. I'm here to help you with any questions about our university. I can assist with:\n\n• Admissions & Applications\n• Financial Aid & Scholarships\n• Academic Programs\n• Campus Life & Housing\n• Career Services\n• Technical Support\n\nWhat would you like to know?`,
+                    text: t('chatGreeting'),
                     timestamp: new Date()
                 };
             } else if (isMetaQuestion) {
@@ -111,8 +113,8 @@ const AIChatbot = ({ userRole = 'student' }) => {
                 botResponse = {
                     type: 'bot',
                     text: lastUserMessage
-                        ? `Your previous question was: "${lastUserMessage.text}"\n\nWould you like me to answer that question, or do you have a different question?`
-                        : `This is the first question you've asked in our conversation. How can I help you today?`,
+                        ? t('chatMetaResponse').replace('{question}', lastUserMessage.text)
+                        : t('chatMetaFirst'),
                     timestamp: new Date()
                 };
             } else {
@@ -122,27 +124,27 @@ const AIChatbot = ({ userRole = 'student' }) => {
                 if (match) {
                     botResponse = {
                         type: 'bot',
-                        text: match.a + `\n\n💡 Is there anything else you'd like to know about this topic?`,
+                        text: match.a + `\n\n💡 ${t('chatAnythingElse')}`,
                         relatedQuestion: match.q,
                         timestamp: new Date()
                     };
                 } else {
                     // Intelligent fallback
                     const topics = {
-                        'cost': 'financial aid and tuition costs',
-                        'money': 'financial aid and scholarships',
-                        'class': 'academic programs and course registration',
-                        'live': 'campus housing and residential life',
-                        'dorm': 'campus housing options',
-                        'food': 'dining services and meal plans',
-                        'job': 'career services and internships',
-                        'work': 'work-study programs and career opportunities',
-                        'club': 'student organizations and activities',
-                        'sport': 'athletics and recreational sports',
-                        'health': 'health services and counseling',
-                        'wifi': 'technology resources and IT support',
-                        'library': 'library services and study spaces',
-                        'parking': 'parking and transportation options'
+                        'cost': t('topicFinancialAid'),
+                        'money': t('topicMoney'),
+                        'class': t('topicClass'),
+                        'live': t('topicLive'),
+                        'dorm': t('topicDorm'),
+                        'food': t('topicFood'),
+                        'job': t('topicJob'),
+                        'work': t('topicWork'),
+                        'club': t('topicClub'),
+                        'sport': t('topicSport'),
+                        'health': t('topicHealth'),
+                        'wifi': t('topicWifi'),
+                        'library': t('topicLibrary'),
+                        'parking': t('topicParking')
                     };
 
                     let suggestedTopic = null;
@@ -156,8 +158,8 @@ const AIChatbot = ({ userRole = 'student' }) => {
                     botResponse = {
                         type: 'bot',
                         text: suggestedTopic
-                            ? `I understand you're interested in ${suggestedTopic}. While I don't have a specific answer to "${currentInput}" in my current database, I'd be happy to help!\n\nCould you be more specific? For example:\n• What specific aspect interests you?\n• Are you looking for requirements, costs, or availability?\n\nAlternatively, you can contact our support team at support@admitiq.edu for personalized assistance.`
-                            : `Thank you for your question: "${currentInput}"\n\nI want to make sure I give you the most accurate information. Could you help me understand better by choosing one of these topics?\n\n• Admissions & Applications\n• Financial Aid & Scholarships\n• Academic Programs & Courses\n• Campus Life & Housing\n• Career Services & Internships\n• Technical Support\n\nOr feel free to rephrase your question, and I'll do my best to help! You can also reach our support team at support@admitiq.edu.`,
+                            ? t('chatFallbackWithTopic').replace('{topic}', suggestedTopic).replace('{question}', currentInput)
+                            : t('chatFallbackGeneral').replace('{question}', currentInput),
                         timestamp: new Date()
                     };
                 }
@@ -183,7 +185,7 @@ const AIChatbot = ({ userRole = 'student' }) => {
         return (
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-all hover:scale-110 z-50"
+                className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-all hover:scale-110 z-[1000]"
                 aria-label="Open chat"
             >
                 <MessageCircle className="w-6 h-6" />
@@ -194,14 +196,14 @@ const AIChatbot = ({ userRole = 'student' }) => {
     if (isMinimized) {
         return (
             <div
-                className="fixed bg-white rounded-lg shadow-xl z-50 cursor-move"
+                className="fixed bg-white rounded-lg shadow-xl z-[1000] cursor-move"
                 style={{ left: `${position.x}px`, top: `${position.y}px`, width: '320px' }}
                 onMouseDown={handleMouseDown}
             >
                 <div className="chat-header flex items-center justify-between p-4 bg-blue-600 text-white rounded-t-lg cursor-move">
                     <div className="flex items-center space-x-2">
                         <Bot className="w-5 h-5" />
-                        <span className="font-semibold">AdmitIQ Assistant</span>
+                        <span className="font-semibold">{t('chatbotTitle')}</span>
                     </div>
                     <div className="flex space-x-2">
                         <button onClick={() => setIsMinimized(false)} className="hover:bg-blue-700 p-1 rounded">
@@ -219,7 +221,7 @@ const AIChatbot = ({ userRole = 'student' }) => {
     return (
         <div
             ref={chatboxRef}
-            className="fixed bg-white rounded-lg shadow-2xl z-50 flex flex-col resize overflow-hidden"
+            className="fixed bg-white rounded-lg shadow-2xl z-[1000] flex flex-col resize overflow-hidden"
             style={{
                 left: `${position.x}px`,
                 top: `${position.y}px`,
@@ -239,8 +241,8 @@ const AIChatbot = ({ userRole = 'student' }) => {
                 <div className="flex items-center space-x-2">
                     <Bot className="w-6 h-6" />
                     <div>
-                        <div className="font-semibold">AdmitIQ Assistant</div>
-                        <div className="text-xs text-blue-100">Powered by AI • {userRole.charAt(0).toUpperCase() + userRole.slice(1)} Mode</div>
+                        <div className="font-semibold">{t('chatbotTitle')}</div>
+                        <div className="text-xs text-blue-100">{t('poweredByAI')} • {userRole.charAt(0).toUpperCase() + userRole.slice(1)} {userRole === 'student' ? t('studentMode').replace('Mode ', '') : t('adminMode').replace('Mode ', '')}</div>
                     </div>
                 </div>
                 <div className="flex space-x-2">
@@ -298,7 +300,7 @@ const AIChatbot = ({ userRole = 'student' }) => {
             {/* Quick Replies */}
             {messages.length === 1 && (
                 <div className="px-4 py-2 border-t border-gray-200 bg-white">
-                    <div className="text-xs text-gray-500 mb-2">Quick questions:</div>
+                    <div className="text-xs text-gray-500 mb-2">{t('quickQuestions')}</div>
                     <div className="flex flex-wrap gap-2">
                         {quickReplies.map((reply, idx) => (
                             <button
@@ -321,7 +323,7 @@ const AIChatbot = ({ userRole = 'student' }) => {
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         onKeyPress={handleKeyPress}
-                        placeholder="Ask me anything..."
+                        placeholder={t('askAnything')}
                         className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     />
                     <button
@@ -333,7 +335,7 @@ const AIChatbot = ({ userRole = 'student' }) => {
                     </button>
                 </div>
                 <div className="text-xs text-gray-400 mt-2 text-center">
-                    Powered by AI with 100+ university Q&As • Drag to move • Resize from corners
+                    {t('poweredByAIFooter')}
                 </div>
             </div>
         </div>
