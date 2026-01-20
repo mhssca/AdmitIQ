@@ -46,29 +46,35 @@ const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
 const Header = ({ onLoginClick, language, onLanguageChange }) => {
   const { t } = useTranslation(language);
   return (
-    <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b z-50">
-      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+    <nav className="fixed top-0 w-full bg-white z-50 border-b">
+      <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <GraduationCap className="w-8 h-8 text-blue-600" />
-          <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">AdmitIQ</span>
+          <span className="text-2xl font-bold text-gray-900">AdmitIQ</span>
         </div>
-        <div className="hidden md:flex items-center space-x-8">
-          <a href="#solutions" className="text-gray-600 hover:text-blue-600 transition">{t('solutions')}</a>
-          <a href="#features" className="text-gray-600 hover:text-blue-600 transition">{t('features')}</a>
-          <a href="#about" className="text-gray-600 hover:text-blue-600 transition">{t('about')}</a>
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={onLanguageChange}
-              className="flex items-center space-x-1 px-3 py-1 bg-gray-50 text-gray-700 rounded-lg hover:bg-gray-100 transition text-sm"
-              title={language === 'en' ? 'Switch to French' : 'Passer à l\'anglais'}
-            >
-              <Globe className="w-4 h-4" />
-              <span>{language ? language.toUpperCase() : 'EN'}</span>
-            </button>
-            <button onClick={onLoginClick} className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-lg shadow-blue-200">
-              {t('login')}
-            </button>
-          </div>
+        <div className="hidden lg:flex items-center space-x-8 text-gray-700 font-medium">
+          <a href="#solutions" className="hover:text-blue-600">{t('solutionsCat')}</a>
+          <a href="#products" className="hover:text-blue-600">{t('products')}</a>
+          <a href="#who-we-help" className="hover:text-blue-600">{t('whoWeHelp')}</a>
+          <a href="#footer" className="hover:text-blue-600">{t('resources')}</a>
+          <a href="#about" className="hover:text-blue-600">{t('about')}</a>
+        </div>
+        <div className="flex items-center space-x-6">
+          <button
+            onClick={onLanguageChange}
+            className="flex items-center space-x-1 text-gray-700 hover:text-blue-600 transition text-sm font-semibold"
+            title={language === 'en' ? 'Switch to French' : 'Passer à l\'anglais'}
+          >
+            <Globe className="w-5 h-5" />
+            <span>{language ? language.toUpperCase() : 'EN'}</span>
+          </button>
+          <Search className="w-5 h-5 text-gray-500 cursor-pointer hover:text-blue-600" />
+          <button onClick={onLoginClick} className="font-semibold text-gray-700 hover:text-blue-600">
+            {t('login')}
+          </button>
+          <button className="px-6 py-3 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition">
+            {t('getDemo')}
+          </button>
         </div>
       </div>
     </nav>
@@ -78,52 +84,22 @@ const Header = ({ onLoginClick, language, onLanguageChange }) => {
 const Hero = ({ onGetStarted, language }) => {
   const { t } = useTranslation(language);
   return (
-    <div className="pt-32 pb-20 px-4">
+    <div className="pt-32 pb-20 px-4 bg-white">
       <div className="max-w-7xl mx-auto text-center">
-        <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
-          {t('heroTitlePart1')} <span className="text-blue-600">{t('heroTitleHighlight')}</span> {t('heroTitlePart2')}
+        <h1 className="text-6xl md:text-8xl font-black text-gray-900 mb-8 tracking-tight">
+          {t('heroSlogan')}<br />
+          <span className="text-blue-600">{t('heroSlogan2')}</span>
         </h1>
-        <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+        <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
           {t('heroSubtitle')}
         </p>
-        <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 mb-20">
-          <button onClick={onGetStarted} className="w-full md:w-auto px-8 py-4 bg-blue-600 text-white rounded-xl text-lg font-semibold hover:bg-blue-700 transition shadow-xl shadow-blue-200 flex items-center justify-center">
-            {t('getStartedFree')} <ChevronRight className="ml-2 w-5 h-5" />
+        <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
+          <button className="px-8 py-4 bg-blue-600 text-white rounded-full text-lg font-bold hover:bg-blue-700 transition shadow-lg">
+            {t('exploreStudent')}
           </button>
-          <button className="w-full md:w-auto px-8 py-4 bg-white text-gray-900 border-2 rounded-xl text-lg font-semibold hover:bg-gray-50 transition">
-            {t('watchDemo')}
+          <button className="px-8 py-4 bg-white text-gray-900 border-2 border-gray-200 rounded-full text-lg font-bold hover:border-blue-600 hover:text-blue-600 transition">
+            {t('exploreAlumni')}
           </button>
-        </div>
-
-        <div className="relative max-w-5xl mx-auto">
-          <div className="absolute inset-0 bg-blue-600 blur-3xl opacity-10 rounded-full"></div>
-          <div className="relative bg-white p-4 rounded-2xl shadow-2xl border aspect-video overflow-hidden flex items-center justify-center bg-gray-900">
-            <div className="text-white text-center">
-              <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 cursor-pointer hover:scale-110 transition">
-                <Play fill="white" className="w-8 h-8 ml-1" />
-              </div>
-              <p className="text-lg font-medium">{t('systemOverviewVideo')}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 max-w-4xl mx-auto">
-          <div>
-            <div className="text-3xl font-bold text-blue-600">500+</div>
-            <div className="text-sm text-gray-500">{t('institutions')}</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-blue-600">1M+</div>
-            <div className="text-sm text-gray-500">{t('studentsTracked')}</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-blue-600">98%</div>
-            <div className="text-sm text-gray-500">{t('satisfaction')}</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-blue-600">$2B+</div>
-            <div className="text-sm text-gray-500">{t('donationsManaged')}</div>
-          </div>
         </div>
       </div>
     </div>
@@ -138,27 +114,165 @@ const Play = ({ fill, className }) => (
 
 const Solutions = ({ language }) => {
   const { t } = useTranslation(language);
-  const solutions = [
-    { icon: <Target className="w-8 h-8 text-blue-600" />, title: t('admissionsAI'), desc: t('admissionsAIDesc') },
-    { icon: <DollarSign className="w-8 h-8 text-green-600" />, title: t('donorManagement'), desc: t('donorManagementDesc') },
-    { icon: <TrendingUp className="w-8 h-8 text-purple-600" />, title: t('financialForecasting'), desc: t('financialForecastingDesc') },
-    { icon: <Users className="w-8 h-8 text-orange-600" />, title: t('studentPortal'), desc: t('studentPortalDesc') },
-  ];
   return (
-    <section id="solutions" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">{t('tailoredSolutions')}</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">{t('solutionsSubtitle')}</p>
-        </div>
-        <div className="grid md:grid-cols-4 gap-8">
-          {solutions.map((s, idx) => (
-            <div key={idx} className="bg-white p-8 rounded-2xl shadow-md border hover:border-blue-500 transition-all hover:-translate-y-1">
-              <div className="mb-6 bg-gray-50 w-16 h-16 rounded-xl flex items-center justify-center">{s.icon}</div>
-              <h3 className="text-xl font-bold mb-3">{s.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{s.desc}</p>
+    <div className="bg-white">
+      {/* Section 1 */}
+      <section id="solutions" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">{t('driveOutcomes')}</h2>
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              {t('driveOutcomesDesc')}
+            </p>
+            <a href="#" className="flex items-center text-blue-600 font-bold hover:underline">
+              {t('exploreStudentSolutions')} <ChevronRight className="w-5 h-5 ml-1" />
+            </a>
+          </div>
+          <div className="bg-white p-8 rounded-2xl shadow-xl border">
+            {/* Abstract visual for outcome */}
+            <div className="space-y-6">
+              <div className="flex items-center justify-between p-4 bg-green-50 rounded-xl border border-green-100">
+                <div className="flex items-center space-x-3">
+                  <TrendingUp className="w-8 h-8 text-green-600" />
+                  <div>
+                    <div className="font-bold text-gray-900">$2.37M</div>
+                    <div className="text-sm text-green-700">{t('recoveredRevenue')}</div>
+                  </div>
+                </div>
+                <Check className="w-6 h-6 text-green-600" />
+              </div>
+              <div className="flex items-center justify-between p-4 bg-blue-50 rounded-xl border border-blue-100">
+                <div className="flex items-center space-x-3">
+                  <Users className="w-8 h-8 text-blue-600" />
+                  <div>
+                    <div className="font-bold text-gray-900">24/7</div>
+                    <div className="text-sm text-blue-700">{t('studentEngagement')}</div>
+                  </div>
+                </div>
+                <Check className="w-6 h-6 text-blue-600" />
+              </div>
             </div>
-          ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section 2 */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+          <div className="order-2 md:order-1 bg-gray-100 p-8 rounded-2xl">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white p-6 rounded-xl shadow-sm text-center">
+                <div className="text-3xl font-bold text-blue-600 mb-1">$232</div>
+                <div className="text-xs font-semibold text-gray-500 uppercase">{t('avgGiftSize')}</div>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-sm text-center">
+                <div className="text-3xl font-bold text-purple-600 mb-1">+45%</div>
+                <div className="text-xs font-semibold text-gray-500 uppercase">{t('donorRetention')}</div>
+              </div>
+            </div>
+          </div>
+          <div className="order-1 md:order-2">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">{t('transformDonor')}</h2>
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              {t('transformDonorDesc')}
+            </p>
+            <a href="#" className="flex items-center text-blue-600 font-bold hover:underline">
+              {t('exploreAlumniSolutions')} <ChevronRight className="w-5 h-5 ml-1" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-20 bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-16">{t('trustedBy')}</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+            <div>
+              <div className="text-5xl font-bold text-blue-400 mb-2">2750+</div>
+              <div className="text-gray-400 font-medium">{t('institutionsSupported')}</div>
+            </div>
+            <div>
+              <div className="text-5xl font-bold text-purple-400 mb-2">30+</div>
+              <div className="text-gray-400 font-medium">{t('platformIntegrations')}</div>
+            </div>
+            <div>
+              <div className="text-5xl font-bold text-green-400 mb-2">34M</div>
+              <div className="text-gray-400 font-medium">{t('alumniEngaged')}</div>
+            </div>
+            <div>
+              <div className="text-5xl font-bold text-orange-400 mb-2">24/7</div>
+              <div className="text-gray-400 font-medium">{t('studentSupport')}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Grid */}
+      <section id="products" className="py-24">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { icon: <Bot className="w-8 h-8 text-blue-600" />, title: t('feature1'), desc: t('feature1Desc'), link: t('exploreVirtual') },
+              { icon: <MessageSquare className="w-8 h-8 text-blue-600" />, title: t('feature2'), desc: t('feature2Desc'), link: t('exploreLive') },
+              { icon: <Zap className="w-8 h-8 text-blue-600" />, title: t('feature3'), desc: t('feature3Desc'), link: t('exploreSMS') },
+              { icon: <MessageSquare className="w-8 h-8 text-blue-600" />, title: t('feature4'), desc: t('feature4Desc'), link: t('exploreWhatsApp') },
+              { icon: <Settings className="w-8 h-8 text-blue-600" />, title: t('feature5'), desc: t('feature5Desc'), link: t('exploreTelephony') },
+              { icon: <Mail className="w-8 h-8 text-blue-600" />, title: t('feature6'), desc: t('feature6Desc'), link: t('exploreEmail') },
+              { icon: <Layout className="w-8 h-8 text-blue-600" />, title: t('feature7'), desc: t('feature7Desc'), link: t('exploreVideo') },
+              { icon: <Globe className="w-8 h-8 text-blue-600" />, title: t('feature8'), desc: t('feature8Desc'), link: t('exploreSocial') },
+            ].map((f, i) => (
+              <div key={i} className="group p-8 rounded-2xl border hover:shadow-xl transition-all cursor-pointer">
+                <div className="mb-6">{f.icon}</div>
+                <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 transition">{f.title}</h3>
+                <p className="text-gray-600 mb-6">{f.desc}</p>
+                <span className="text-sm font-bold text-blue-600 flex items-center">
+                  {f.link} <ChevronRight className="w-4 h-4 ml-1" />
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Who We Serve */}
+      <section id="who-we-help" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-16">{t('whoWeServe')}</h2>
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { title: t('colleges'), desc: t('collegesDesc') },
+              { title: t('nonprofits'), desc: t('nonprofitsDesc') },
+              { title: t('k12'), desc: t('k12Desc') },
+              { title: t('integrations'), desc: t('integrationsDesc') },
+            ].map((item, i) => (
+              <div key={i} className="bg-white p-8 rounded-xl shadow-sm border hover:border-blue-500 transition">
+                <h3 className="text-xl font-bold mb-4">{item.title}</h3>
+                <p className="text-gray-600 mb-6">{item.desc}</p>
+                <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-blue-600">
+                  <ChevronRight />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+const About = ({ language }) => {
+  const { t } = useTranslation(language);
+  return (
+    <section id="about" className="py-24 bg-white">
+      <div className="max-w-4xl mx-auto px-4 text-center">
+        <h2 className="text-4xl font-bold text-gray-900 mb-8">{t('aboutTitle')}</h2>
+        <div className="space-y-6 text-lg text-gray-600 leading-relaxed text-justify">
+          <p>{t('aboutP1')}</p>
+          <p>{t('aboutP2')}</p>
+          <p>{t('aboutP3')}</p>
+          <p>{t('aboutP4')}</p>
+          <p>{t('aboutP5')}</p>
         </div>
       </div>
     </section>
@@ -168,41 +282,63 @@ const Solutions = ({ language }) => {
 const Footer = ({ language }) => {
   const { t } = useTranslation(language);
   return (
-    <footer className="bg-gray-900 text-gray-400 py-12 px-4 border-t border-gray-800">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
-        <div>
+    <footer id="footer" className="bg-gray-900 text-gray-400 py-16 px-4">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-5 gap-12 text-sm">
+        <div className="md:col-span-1">
           <div className="flex items-center space-x-2 mb-6">
             <GraduationCap className="w-8 h-8 text-blue-500" />
             <span className="text-2xl font-bold text-white">AdmitIQ</span>
           </div>
-          <p className="text-sm">{t('footerDesc')}</p>
+          <p className="mb-6">
+            {t('footerJoin')}
+          </p>
+          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg font-bold">{t('bookDemo')}</button>
         </div>
         <div>
-          <h4 className="text-white font-bold mb-4">{t('product')}</h4>
-          <ul className="space-y-2 text-sm">
-            <li><a href="#" className="hover:text-blue-500">{t('features')}</a></li>
-            <li><a href="#" className="hover:text-blue-500">{t('pricing')}</a></li>
-            <li><a href="#" className="hover:text-blue-500">{t('security')}</a></li>
+          <h4 className="text-white font-bold mb-4 uppercase tracking-wider">{t('solutionsCat')}</h4>
+          <ul className="space-y-2">
+            <li><a href="#" className="hover:text-white">{t('admitIQAlumni')}</a></li>
+            <li><a href="#" className="hover:text-white">{t('donorOutreach')}</a></li>
+            <li><a href="#" className="hover:text-white">{t('studentExp')}</a></li>
+            <li><a href="#" className="hover:text-white">{t('studentEngagement')}</a></li>
+            <li><a href="#" className="hover:text-white">{t('enrollment')}</a></li>
+            <li><a href="#" className="hover:text-white">{t('retention')}</a></li>
           </ul>
         </div>
         <div>
-          <h4 className="text-white font-bold mb-4">{t('company')}</h4>
-          <ul className="space-y-2 text-sm">
-            <li><a href="#" className="hover:text-blue-500">{t('about')}</a></li>
-            <li><a href="#" className="hover:text-blue-500">{t('careers')}</a></li>
-            <li><a href="#" className="hover:text-blue-500">{t('contact')}</a></li>
+          <h4 className="text-white font-bold mb-4 uppercase tracking-wider">{t('whoWeHelp')}</h4>
+          <ul className="space-y-2">
+            <li><a href="#" className="hover:text-white">{t('higherEd')}</a></li>
+            <li><a href="#" className="hover:text-white">{t('nonprofits')}</a></li>
+            <li><a href="#" className="hover:text-white">{t('k12')}</a></li>
           </ul>
         </div>
         <div>
-          <h4 className="text-white font-bold mb-4">{t('legal')}</h4>
-          <ul className="space-y-2 text-sm">
-            <li><a href="#" className="hover:text-blue-500">{t('privacy')}</a></li>
-            <li><a href="#" className="hover:text-blue-500">{t('terms')}</a></li>
+          <h4 className="text-white font-bold mb-4 uppercase tracking-wider">{t('products')}</h4>
+          <ul className="space-y-2">
+            <li><a href="#" className="hover:text-white">{t('ivy')}</a></li>
+            <li><a href="#" className="hover:text-white">{t('graduway')}</a></li>
+            <li><a href="#" className="hover:text-white">{t('raise')}</a></li>
+            <li><a href="#" className="hover:text-white">{t('advance')}</a></li>
+            <li><a href="#" className="hover:text-white">{t('gratavid')}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="text-white font-bold mb-4 uppercase tracking-wider">{t('about')}</h4>
+          <ul className="space-y-2">
+            <li><a href="#" className="hover:text-white">{t('aboutUs')}</a></li>
+            <li><a href="#" className="hover:text-white">{t('careers')}</a></li>
+            <li><a href="#" className="hover:text-white">{t('contactUs')}</a></li>
+            <li><a href="#" className="hover:text-white">{t('getDemo')}</a></li>
           </ul>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-800 text-sm text-center">
-        © 2025 AdmitIQ Inc. {t('allRightsReserved')}
+      <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-xs">
+        <div>© 2026 AdmitIQ</div>
+        <div className="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" className="hover:text-white">{t('privacyPolicy')}</a>
+          <a href="#" className="hover:text-white">{t('trust')}</a>
+        </div>
       </div>
     </footer>
   );
@@ -1194,6 +1330,7 @@ export default function App() {
       <Header onLoginClick={() => setShowLogin(true)} language={language} onLanguageChange={toggleLanguage} />
       <Hero onGetStarted={() => setShowLogin(true)} language={language} />
       <Solutions language={language} />
+      <About language={language} />
       <Footer language={language} />
       <AIChatbot userRole="student" />
     </div>
