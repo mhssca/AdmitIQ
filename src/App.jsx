@@ -8,8 +8,53 @@ import {
   Search, Download, Plus, Layout, Settings, LogOut,
   ChevronRight, Globe, MessageSquare, GraduationCap,
   ChevronLeft, LayoutDashboard, FileText, Heart, Award,
-  Check, Copy, Send, Zap, Eye, X, User, Bot, Minimize2, Maximize2
+  Check, Copy, Send, Zap, Eye, X, User, Bot, Minimize2, Maximize2, ChevronDown
 } from 'lucide-react';
+
+const Dropdown = ({ title, items, simple = false }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div
+      className="relative group h-full flex items-center"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      <button className="flex items-center space-x-1 hover:text-blue-600 px-2 py-4 h-full">
+        <span>{title}</span>
+        <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      {isOpen && (
+        <div className="absolute top-full left-0 mt-0 w-64 bg-white shadow-xl rounded-b-lg border-t-2 border-blue-600 py-4 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="px-4 space-y-4">
+            {items.map((section, idx) => (
+              <div key={idx} className="pb-2 border-b last:border-0 border-gray-100">
+                <h4 className="font-semibold text-gray-900 mb-2">{section.title}</h4>
+                {simple ? (
+                  <div className="space-y-1">
+                    {section.links.map((link, lIdx) => (
+                      <a key={lIdx} href="#" className="block text-sm text-gray-600 hover:text-blue-600">{link}</a>
+                    ))}
+                    {section.links.length === 0 && <span className="block text-sm text-gray-400">View</span>}
+                  </div>
+                ) : (
+                  <ul className="space-y-1">
+                    {section.links.map((link, lIdx) => (
+                      <li key={lIdx}>
+                        <a href="#" className="text-sm text-gray-600 hover:text-blue-600 block">{link}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 import { translations, useTranslation } from './translations';
 import AIChatbot from './AIChatbot';
 
@@ -52,12 +97,41 @@ const Header = ({ onLoginClick, language, onLanguageChange }) => {
           <GraduationCap className="w-8 h-8 text-blue-600" />
           <span className="text-2xl font-bold text-gray-900">AdmitIQ</span>
         </div>
-        <div className="hidden lg:flex items-center space-x-8 text-gray-700 font-medium">
-          <a href="#solutions" className="hover:text-blue-600">{t('solutionsCat')}</a>
-          <a href="#products" className="hover:text-blue-600">{t('products')}</a>
-          <a href="#who-we-help" className="hover:text-blue-600">{t('whoWeHelp')}</a>
-          <a href="#footer" className="hover:text-blue-600">{t('resources')}</a>
-          <a href="#about" className="hover:text-blue-600">{t('about')}</a>
+        <div className="hidden lg:flex items-center space-x-6 text-gray-700 font-medium h-full">
+          <Dropdown title={t('solutionsCat')}
+            items={[
+              { title: t('solStudentExp'), links: [t('solEnrollment'), t('solRetention'), t('solComm')] },
+              { title: t('solAlumni'), links: [t('solOutreach'), t('solPipeline'), t('solDigitalFund')] }
+            ]}
+          />
+          <Dropdown title={t('products')}
+            items={[
+              { title: t('prodIvy'), links: [t('prodIvyDesc')] },
+              { title: t('prodGraduway'), links: [t('prodGraduwayDesc')] },
+              { title: t('prodRaise'), links: [t('prodRaiseDesc')] },
+              { title: t('prodAdvance'), links: [t('prodAdvanceDesc')] }
+            ]}
+            simple
+          />
+          <Dropdown title={t('whoWeHelp')}
+            items={[
+              { title: t('wwhUniversities'), links: [t('wwhUniversitiesDesc')] },
+              { title: t('wwhColleges'), links: [t('wwhCollegesDesc')] },
+              { title: t('wwhInstitutes'), links: [t('wwhInstitutesDesc')] },
+              { title: t('wwhGov'), links: [t('wwhGovDesc')] }
+            ]}
+            simple
+          />
+          <Dropdown title={t('resources')}
+            items={[
+              { title: t('resBlog'), links: [] },
+              { title: t('resGuides'), links: [] },
+              { title: t('resCaseStudies'), links: [] },
+              { title: t('resWebinars'), links: [] }
+            ]}
+            simple
+          />
+          <a href="#about" className="hover:text-blue-600 px-2 py-4">{t('about')}</a>
         </div>
         <div className="flex items-center space-x-6">
           <button

@@ -214,7 +214,45 @@ export const translations = {
         adminMode: 'Admin Mode',
         askAnything: 'Ask me anything...',
         quickQuestions: 'Quick questions:',
-        poweredByAIFooter: 'Powered by AI with 100+ university Q&As • Drag to move • Resize from corners'
+        poweredByAIFooter: 'Powered by AI with 100+ university Q&As • Drag to move • Resize from corners',
+
+        // Header Dropdowns
+        // Solutions
+        solStudentExp: 'Student Experience',
+        solEnrollment: 'Enrollment',
+        solRetention: 'Retention',
+        solComm: 'Communication channels',
+        solAlumni: 'Alumni Engagement & Fundraising',
+        solOutreach: 'Donor outreach',
+        solPipeline: 'Donor pipeline development',
+        solDigitalFund: 'Digital fundraising',
+
+        // Products
+        prodIvy: 'Ivy & Ocelot',
+        prodIvyDesc: 'AI Chatbot & Live Chat',
+        prodGraduway: 'Graduway',
+        prodGraduwayDesc: 'Alumni Networking',
+        prodRaise: 'Raise',
+        prodRaiseDesc: 'Fundraiser Enablement',
+        prodAdvance: 'Advance',
+        prodAdvanceDesc: 'Giving Days & Crowdfunding',
+
+        // Who We Help (Canadian)
+        wwhUniversities: 'Universities',
+        wwhUniversitiesDesc: 'U of T, McGill, UBC, Alberta',
+        wwhColleges: 'Colleges',
+        wwhCollegesDesc: 'Seneca, Humber, BCIT, Sheridan',
+        wwhInstitutes: 'Research Institutes',
+        wwhInstitutesDesc: 'Vector Institute, MILA, Perimeter',
+        wwhGov: 'Government & Support',
+        wwhGovDesc: 'NSERC, SSHRC, NRC Canada',
+
+        // Resources
+        resBlog: 'Blog',
+        resGuides: 'Guides',
+        resCaseStudies: 'Case Studies',
+        resWebinars: 'Webinars',
+        resDemos: 'Live Demos',
     },
     fr: {
         // Navigation
@@ -430,7 +468,45 @@ export const translations = {
         adminMode: 'Mode administrateur',
         askAnything: 'Posez-moi une question...',
         quickQuestions: 'Questions rapides:',
-        poweredByAIFooter: "Propulsé par IA avec plus de 100 Q&R universitaires • Faites glisser pour déplacer • Redimensionnez depuis les coins"
+        poweredByAIFooter: "Propulsé par IA avec plus de 100 Q&R universitaires • Faites glisser pour déplacer • Redimensionnez depuis les coins",
+
+        // Header Dropdowns
+        // Solutions
+        solStudentExp: 'Expérience étudiante',
+        solEnrollment: 'Inscription',
+        solRetention: 'Rétention',
+        solComm: 'Canaux de communication',
+        solAlumni: 'Engagement des anciens & Collecte de fonds',
+        solOutreach: 'Sensibilisation des donateurs',
+        solPipeline: 'Développement du pipeline de donateurs',
+        solDigitalFund: 'Collecte de fonds numérique',
+
+        // Products
+        prodIvy: 'Ivy & Ocelot',
+        prodIvyDesc: 'Chatbot IA & Chat en direct',
+        prodGraduway: 'Graduway',
+        prodGraduwayDesc: 'Réseautage des anciens',
+        prodRaise: 'Raise',
+        prodRaiseDesc: 'Habilitation des collecteurs',
+        prodAdvance: 'Advance',
+        prodAdvanceDesc: 'Journées de dons & Financement participatif',
+
+        // Who We Help (Canadian)
+        wwhUniversities: 'Universités',
+        wwhUniversitiesDesc: 'U of T, McGill, UBC, Alberta',
+        wwhColleges: 'Collèges',
+        wwhCollegesDesc: 'Seneca, Humber, BCIT, Sheridan',
+        wwhInstitutes: 'Instituts de recherche',
+        wwhInstitutesDesc: 'Institut Vector, MILA, Perimeter',
+        wwhGov: 'Gouvernement & Soutien',
+        wwhGovDesc: 'CRSNG, CRSH, CNRC Canada',
+
+        // Resources
+        resBlog: 'Blog',
+        resGuides: 'Guides',
+        resCaseStudies: 'Études de cas',
+        resWebinars: 'Webinaires',
+        resDemos: 'Démos en direct',
     }
 };
 
